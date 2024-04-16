@@ -8,7 +8,7 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\ValidatesWhenResolvedTrait;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Ygreis\Validator\Interfaces\AbstractValidatorInterface;
+use Ygreis\LaravelValidators\Interfaces\AbstractValidatorInterface;
 use Illuminate\Contracts\Validation\Validator as ValidatorInterface;
 abstract class AbstractValidator implements AbstractValidatorInterface
 {
