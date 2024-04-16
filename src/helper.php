@@ -42,8 +42,6 @@ if (! function_exists('makeValidatorThrow'))
         /**
          * @var AbstractValidator $validatorInstance
          */
-        $validatorInstance = makeValidator($abstract, $data, $parameters, true);
-
-        return $validatorInstance->validateFails($data ?? request()->all());
+        return makeValidator($abstract, $data, $parameters, true);
     }
 }
