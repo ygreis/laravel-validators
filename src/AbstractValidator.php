@@ -8,6 +8,7 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\ValidatesWhenResolvedTrait;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Ygreis\LaravelValidators\Exceptions\ValidatorException;
 use Ygreis\LaravelValidators\Interfaces\AbstractValidatorInterface;
 use Illuminate\Contracts\Validation\Validator as ValidatorInterface;
 abstract class AbstractValidator implements AbstractValidatorInterface
@@ -97,13 +98,29 @@ abstract class AbstractValidator implements AbstractValidatorInterface
         }
         return $instance;
     }
-    public function validateFails(array $data, $failsWithException = false): Validator
+
+    /**
+     * @param array $data
+     * @param bool $failsWithException
+     * @return Validator
+     * @throws ValidatorException
+     */
+    public function validateFails(array $data, bool $failsWithException = false): Validator
     {
         try {
             return $this->validate($data);
         } catch (ValidationException $exception) {
-            return $exception->validator;
+            if ($failsWithException) {
+                throw new ValidatorException($exception, $exception->validator->getMessageBag()->first());
+            }
+        } catch (\Exception $exception){
+
+            if ($failsWithException) {
+                throw new ValidatorException($exception->getMessage(), $exception->getMessage(), 501);
+            }
         }
+
+        return $exception->validator;
     }
 
     /**
