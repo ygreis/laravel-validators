@@ -1,6 +1,6 @@
 <?php
 
-namespace Ygreis\Validator\Interfaces;
+namespace Ygreis\LaravelValidators\Interfaces;
 
 use Illuminate\Validation\Validator;
 interface AbstractValidatorInterface

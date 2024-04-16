@@ -1,6 +1,6 @@
 <?php
 
-namespace Ygreis\Validator;
+namespace Ygreis\LaravelValidators;
 
 use Illuminate\Foundation\Http\FormRequest;
 
